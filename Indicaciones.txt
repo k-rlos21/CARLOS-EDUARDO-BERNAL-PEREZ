@@ -1,0 +1,12 @@
+/*Base de Datos*/
+create user lifemiles password 'lifemiles';
+
+alter role lifemiles with superuser;
+
+insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(1,'carlos94','Carlos94contrasenia',0);
+insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(2,'omar94','Omar94contrasenia',0);
+insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(3,'javier94','Javier94contrasenia',0);
+
+
+/*URL para acceder a los servicios*/
+http://localhost:8080/proyecto1/usuario/validarCredenciales
