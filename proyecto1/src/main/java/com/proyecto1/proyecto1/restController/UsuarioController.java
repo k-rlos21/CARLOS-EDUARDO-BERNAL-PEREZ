@@ -1,15 +1,18 @@
 package com.proyecto1.proyecto1.restController;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto1.proyecto1.entidades.Usuario;
+import com.proyecto1.proyecto1.excepciones.UsuarioErrorResponse;
+import com.proyecto1.proyecto1.excepciones.UsuarioException;
 import com.proyecto1.proyecto1.repositorio.UsuarioRepositorio;
 
 @RestController
@@ -27,21 +30,41 @@ public class UsuarioController {
 	
 	
 	@PostMapping("validarCredenciales")
-	public String validarUsuario(HttpServletRequest request){
+	public ResponseEntity<String> validarUsuario(HttpServletRequest request){
 		
-		String contrasenia = request.getParameter("nombreusuario") + request.getParameter("contrasenia");
+		String contrasenia = request.getParameter("nombreusuario")+request.getParameter("contrasenia");
 		
 		int idUsuario = Integer.parseInt(request.getParameter("idusuario"));
 		
-		Optional<Usuario> us = usuarioRepositorio.findById(idUsuario);
-		Usuario usuario  = us.get();
+		Usuario usuario  = usuarioRepositorio.findById(idUsuario).orElse(null);
 		
-		if(usuario.getContrasenia() == contrasenia){
-			return "Usuario Validado de manera exitosa";
+		if(usuario.getIntentos() > 4){
+			return new ResponseEntity<String>("Usuario Inactivo, favor contactar con soporte",HttpStatus.BAD_REQUEST);
 		}
-		else{
-			return "Usuario Invalido";
+		
+		if(!usuario.getContrasenia().equals(contrasenia)){
+			
+			usuario.setIntentos(usuario.getIntentos()+1);
+			usuarioRepositorio.save(usuario);
+
+			return new ResponseEntity<String>("El usuario no esta autorizado",HttpStatus.UNAUTHORIZED);
+			
 		}
+		
+		
+		return new ResponseEntity<String>("Usuario Validado de forma exitosa",HttpStatus.OK);
 		
 	}
+	
+	/*@ExceptionHandler
+	public ResponseEntity<UsuarioErrorResponse> handleException(UsuarioException exc){
+		
+		UsuarioErrorResponse error = new UsuarioErrorResponse(
+								HttpStatus.UNAUTHORIZED.value(),
+								exc.getMessage(),
+								System.currentTimeMillis()
+				);
+		
+		return new ResponseEntity<>(error,HttpStatus.UNAUTHORIZED);
+	}*/
 }
