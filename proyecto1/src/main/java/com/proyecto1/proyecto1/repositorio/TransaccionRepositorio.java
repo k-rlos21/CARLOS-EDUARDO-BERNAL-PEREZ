@@ -12,7 +12,7 @@ public interface TransaccionRepositorio extends CrudRepository<Transaccion,Strin
 	
 	List<Transaccion> findByTransactionDateBetweenAndProductosList_AccountId(Date start,Date end, String accountId);
 	
-	@Query("select max(t.idTransaccion) from Transaccion t")
+	@Query("select max(to_number(replace(t.idTransaccion,'TRA00',''),'99G999D9S')) from Transaccion t")
 	String maximaTransaccion();
 
 }

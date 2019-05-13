@@ -34,9 +34,13 @@ public class UsuarioController {
 		
 		String contrasenia = request.getParameter("nombreusuario")+request.getParameter("contrasenia");
 		
-		int idUsuario = Integer.parseInt(request.getParameter("idusuario"));
+		String nombreUsuario = request.getParameter("nombreusuario");
 		
-		Usuario usuario  = usuarioRepositorio.findById(idUsuario).orElse(null);
+		Usuario usuario  = usuarioRepositorio.findByNombreUsuario(nombreUsuario);
+		
+		if(usuario==null){
+			return new ResponseEntity<>("Usuario No encontrado",HttpStatus.NOT_FOUND);
+		}
 		
 		if(usuario.getIntentos() > 4){
 			return new ResponseEntity<String>("Usuario Inactivo, favor contactar con soporte",HttpStatus.BAD_REQUEST);

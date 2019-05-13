@@ -26,8 +26,8 @@ public class NumeroTransaccion {
 		if(maximaActual.isEmpty()){
 			siguienteTransaccion = "TRA001";
 		}else{
-			maximo = Integer.parseInt(maximaActual.replaceAll("TRA", ""))+1;
-			
+			maximo = Integer.parseInt(maximaActual.replaceAll("TRA00", ""))+1;
+
 			siguienteTransaccion = "TRA00"+maximo;
 		}
 		
