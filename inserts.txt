@@ -1,0 +1,52 @@
+insert into tipoProducto values(1,'Cuenta Bancaria');
+insert into tipoProducto values(2,'Tarjeta de Crédito');
+insert into tipoProducto values(3,'Prestamo Bancario');
+
+insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(1,'carlos94','carlos94Contrasenia1',0);
+insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(2,'omar94','omar94Contrasenia2',0);
+insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(3,'javier94','javier94Contrasenia3',0);
+insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(4,'jose94','jose94Contrasenia4',0); 
+
+
+insert into cliente values('CL001',1,'Carlos Eduardo', 'Bernal Perez');
+insert into cliente values('CL002',2,'Omar Alexander', 'Garcia Jacobo');
+insert into cliente values('CL003',3,'Javier Aldair', 'Escobar Morales');
+insert into cliente values('CL004',4,'Jose Manuel', 'Lopez García');
+
+
+insert into producto(accountid,idcliente,idtipoproducto,startdate,enddate,available,monthlycut,limite,total,debit,interestrate,interestamount)
+values('AE1234567','CL001',1,'2019-04-01','2019-04-20',3000,0,0,0,0,0,0);
+
+insert into producto(accountid,idcliente,idtipoproducto,startdate,enddate,limite,available,interestrate,interestamount,monthlycut,total,debit)
+values('AE1234568','CL001',2,'2019-04-01','2019-04-20',4000,2000,5.25,125.43,18,0,0);
+
+insert into producto(accountid,idcliente,idtipoproducto,startdate,enddate,total,debit,interestrate,interestamount,monthlycut,limite,available)
+values('AE1234569','CL001',3,'2019-04-01','2019-04-20',5000,1500,5.25,125.43,0,0,0);
+
+insert into producto(accountid,idcliente,idtipoproducto,startdate,enddate,available,monthlycut,limite,total,debit,interestrate,interestamount)
+values('AE1234566','CL001',1,'2019-02-01','2019-02-20',2000,0,0,0,0,0,0);
+
+insert into producto(accountid,idcliente,idtipoproducto,startdate,enddate,available,monthlycut,limite,total,debit,interestrate,interestamount)
+values('AE1234565','CL002',1,'2019-05-01','2019-05-20',2000,0,0,0,0,0,0);
+
+insert into producto(accountid,idcliente,idtipoproducto,startdate,enddate,limite,available,interestrate,interestamount,monthlycut,total,debit)
+values('AE1234564','CL003',2,'2019-05-01','2019-05-20',4000,2000,5.25,125.43,18,0,0);
+
+insert into producto(accountid,idcliente,idtipoproducto,startdate,enddate,total,debit,interestrate,interestamount,monthlycut,limite,available)
+values('AE1234563','CL003',3,'2019-03-01','2019-03-20',5000,1500,5.25,125.43,0,0,0);
+
+insert into producto(accountid,idcliente,idtipoproducto,startdate,enddate,total,debit,interestrate,interestamount,monthlycut,limite,available)
+values('AE1234562','CL004',3,'2019-03-01','2019-03-20',5000,1500,5.25,125.43,0,0,0);
+
+
+insert into transaccion values ('TRA001','2019-04-15 10:25:30','Pago Quincenal',1000);
+insert into transaccion values ('TRA002','2019-04-17 19:30:20','Pago Tarjeta de Credito',-100);
+insert into transaccion values ('TRA003','2019-04-20 15:50:50','Pago Ebay',-125.43);
+
+
+insert into producto_transaccion values ('TRA001','AE1234567');
+insert into producto_transaccion values ('TRA002','AE1234567');
+insert into producto_transaccion values ('TRA003','AE1234567');
+
+
+
