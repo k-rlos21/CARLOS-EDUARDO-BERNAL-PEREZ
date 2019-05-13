@@ -1,12 +1,37 @@
-/*Base de Datos*/
+/*INDICACIONES GENERALES*/
+
+
+/*BASE DE DATOS*/
+/*Version de Base de datos utilizada Postgre 9.x*/
+
+
+/*creamos un usuario con nombre "lifemiles" y password "lifemiles" desde el administrador de postgres*/
+/*generalmente esta se encuentra en el servidor llamado PostgreSQL, base de datos postgres*/
 create user lifemiles password 'lifemiles';
 
+/*Asignamos Roles de superusuario al usuario recien creado*/
 alter role lifemiles with superuser;
 
-insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(1,'carlos94','Carlos94contrasenia',0);
-insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(2,'omar94','Omar94contrasenia',0);
-insert into usuario(idusuario,nombreusuario,contrasenia,intentos) values(3,'javier94','Javier94contrasenia',0);
+/*Creamos una base de datos con el nombre proyecto1*/
+/*esto podemos hacerlo desde el IDE pgAdmin seleccionando Databases-->create-->Database*/
+/*Se mostrará un cuadro de dialogo en el que en el campo Database colocamos "proyecto1"*/
+/*y en owner seleccionanos el usuario recien creado "lifemiles" luego presionamos create*/
+
+/*CREACION DE TABLAS EN LA BASE DE DATOS*/
+/*con un editor de texto abrimos el archivo*/
+/*"PruebaLMV2" ,copiamos el contenido de este archivo y lo pegamos en el editor sql de nuestra base de datos*/
+/*recien creada (en pgAdmin seleccionamos la base de datos-->click derecho -->Query tool) luego presionamos F5*/
+/*para que que se ejecute nuestro script*/
+
+/*POBLAR BASE DE DATOS*/
+/*para poblar nuestra base de datos con algunos datos iniciales, con un editor de texto abrimos el archivo*/
+/*"inserts" ,copiamos el contenido de este archivo y lo pegamos en el editor sql de nuestra base de datos*/
+/*recien creada (en pgAdmin seleccionamos la base de datos-->click derecho -->Query tool) luego seleccionamos todo y presionamos F5*/
+/*para que que se ejecute nuestro script*/
+
 
 
 /*URL para acceder a los servicios*/
-http://localhost:8080/proyecto1/usuario/validarCredenciales
+/*para obtener las urls de los servicios dirijase al archivo llamado "ServiciosURLS" */
+/*y para ver ejemplos de configuracion de estos servicios vea el archivo "EjemploEjecuciones"*/
+/*yo utilice la herramienta PostMan para probar los servicios*/
